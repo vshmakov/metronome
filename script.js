@@ -3,13 +3,10 @@ function sleep(milliseconds) {
 }
 
 new class {
-    soundsCount = 6
+    soundsCount = 5
     soundSelect = document.getElementById('sound')
     playButton = document.getElementById('play')
     isPlaying = false
-    sound
-    downButton = document.getElementById('down')
-    upButton = document.getElementById('up')
     timesSpan = document.getElementById('times')
     timesPerMinute = 60
     audios = {}
@@ -26,8 +23,6 @@ new class {
         }
 
         this.soundSelect.innerHTML = options
-        this.soundSelect.onkeyup = () => this.keyupSoundSelectHandler()
-        this.keyupSoundSelectHandler()
         this.playButton.onclick = () => this.clickPlayButtonHandler()
         this.setPlayButtonName()
     }
@@ -44,16 +39,11 @@ new class {
         } else {
             parent.append(button)
         }
-
     }
 
     changeTimesPerMinute(delta) {
         this.timesPerMinute = this.timesPerMinute + delta
         this.timesSpan.innerHTML = this.timesPerMinute
-    }
-
-    keyupSoundSelectHandler() {
-        this.sound = this.soundSelect.value
     }
 
     clickPlayButtonHandler() {
@@ -75,7 +65,7 @@ new class {
 
     async runMetronome() {
         while (this.isPlaying) {
-            this.playSound(this.sound)
+            this.playSound(this.soundSelect.value)
             await sleep(60 / this.timesPerMinute * 1000)
         }
     }
@@ -88,23 +78,9 @@ new class {
         if (!this.audios[path]) {
             const audio = document.createElement('audio')
             audio.src = path
-            // this.increaseVolume(audio)
             this.audios[path] = audio
         }
 
         return this.audios[path];
-    }
-
-    increaseVolume(audio) {
-        const audioContext = new AudioContext();
-        const source = audioContext.createMediaElementSource(audio);
-
-// create a gain node
-        const gainNode = audioContext.createGain();
-        gainNode.gain.value = 2; // double the volume
-        source.connect(gainNode);
-
-// connect the gain node to an output destination
-        gainNode.connect(audioContext.destination);
     }
 }
