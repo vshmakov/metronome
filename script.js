@@ -88,7 +88,7 @@ new class {
         if (!this.audios[path]) {
             const audio = document.createElement('audio')
             audio.src = path
-            this.increaseVolume(audio)
+            // this.increaseVolume(audio)
             this.audios[path] = audio
         }
 
