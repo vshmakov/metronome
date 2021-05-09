@@ -19,7 +19,7 @@ new class {
         let options = ''
 
         for (let i = 1; i <= this.soundsCount; i++) {
-            const path = `audio/${i}.mp3`
+            const path = `assets/audio/${i}.mp3`
             options += `<option value="${path}">Sound #${i}</option>`
             this.audios[path] = this.downloadAudio(path)
         }
