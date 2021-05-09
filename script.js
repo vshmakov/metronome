@@ -12,7 +12,7 @@ new class {
     upButton = document.getElementById('up')
     timesSpan = document.getElementById('times')
     timesPerMinute = 60
-
+    audios = {}
 
     constructor() {
         [-5, -10, 5, 10]
@@ -81,10 +81,18 @@ new class {
     }
 
     playSound(path) {
-        const audio = document.createElement('audio')
-        audio.src = path
-        this.increaseVolume(audio)
-        audio.play()
+        this.getAudio(path).play()
+    }
+
+    getAudio(path) {
+        if (!this.audios[path]) {
+            const audio = document.createElement('audio')
+            audio.src = path
+            this.increaseVolume(audio)
+            this.audios[path] = audio
+        }
+
+        return this.audios[path];
     }
 
     increaseVolume(audio) {
