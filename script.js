@@ -8,7 +8,7 @@ new class {
     playButton = document.getElementById('play')
     isPlaying = false
     timesSpan = document.getElementById('times')
-    timesPerMinute = 60
+    timesPerMinute = 90
     audios = {}
 
     constructor() {
