@@ -1,3 +1,3 @@
 # Metronome
 
-Very simple metronome wich works everywhere.
+Very simple metronome wich runs everywhere.
