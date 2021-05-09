@@ -1,12 +1,15 @@
+#speed{
+    height: 400px;
+}
+
 #sound {
     display: block;
     width: 100%;
-    height: 100px;
+    height: 200px;
 }
 
 #play {
     display: block;
     width: 100%;
-    height: 100px;
-
+    height: 400px;
 }
