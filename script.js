@@ -16,7 +16,7 @@ new class {
 
     constructor() {
         [-5, -10, 5, 10]
-                        .forEach((delta) => this.configureChangeButtons(delta))
+            .forEach((delta) => this.configureChangeButtons(delta))
         this.changeTimesPerMinute(0)
 
         let options = ''
@@ -34,13 +34,14 @@ new class {
 
     configureChangeButtons(delta) {
         const button = document.createElement('button')
-        button.innerHTML = delta
+        const sign = delta > 0 ? '+' : ''
+        button.innerHTML = sign + delta
         button.onclick = () => this.changeTimesPerMinute(delta)
         const parent = this.timesSpan.parentNode;
 
-        if (delta<0){
+        if (delta < 0) {
             parent.prepend(button)
-        }else {
+        } else {
             parent.append(button)
         }
 
