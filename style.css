@@ -1,3 +1,9 @@
+#container{
+    width: 400px;
+    margin: 0 auto;
+    height: 600px;
+}
+
 #speed{
     height: 40%;
 }
