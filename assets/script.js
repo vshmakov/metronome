@@ -6,7 +6,7 @@ new class {
     soundsCount = 5
     soundSelect = document.getElementById('sound')
     playButton = document.getElementById('play')
-    isPlaying = false
+    playId = 0
     timesSpan = document.getElementById('times')
     timesPerMinute = 90
     audios = {}
@@ -49,16 +49,16 @@ new class {
     }
 
     clickPlayButtonHandler() {
-        if (this.isPlaying) {
-            this.isPlaying = false
-            this.setPlayButtonName()
-
-            return
-        }
-
-        this.isPlaying = true
+        this.playId++
         this.setPlayButtonName()
-        this.runMetronome()
+
+        if (this.isPlaying) {
+            this.runMetronome()
+        }
+    }
+
+    get isPlaying() {
+        return 1 === this.playId % 2
     }
 
     setPlayButtonName() {
@@ -66,7 +66,9 @@ new class {
     }
 
     async runMetronome() {
-        while (this.isPlaying) {
+        const playId = this.playId
+
+        while (playId === this.playId) {
             this.playSound(this.soundSelect.value)
             await sleep(60 / this.timesPerMinute * 1000)
         }
