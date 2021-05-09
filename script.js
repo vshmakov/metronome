@@ -83,6 +83,20 @@ new class {
     playSound(path) {
         const audio = document.createElement('audio')
         audio.src = path
+        this.increaseVolume(audio)
         audio.play()
+    }
+
+    increaseVolume(audio) {
+        const audioContext = new AudioContext();
+        const source = audioContext.createMediaElementSource(audio);
+
+// create a gain node
+        const gainNode = audioContext.createGain();
+        gainNode.gain.value = 2; // double the volume
+        source.connect(gainNode);
+
+// connect the gain node to an output destination
+        gainNode.connect(audioContext.destination);
     }
 }
