@@ -19,7 +19,9 @@ new class {
         let options = ''
 
         for (let i = 1; i <= this.soundsCount; i++) {
-            options += `<option value="audio/${i}.mp3">Sound #${i}</option>`
+            const path = `audio/${i}.mp3`
+            options += `<option value="${path}">Sound #${i}</option>`
+            this.audios[path] = this.downloadAudio(path)
         }
 
         this.soundSelect.innerHTML = options
@@ -71,16 +73,13 @@ new class {
     }
 
     playSound(path) {
-        this.getAudio(path).play()
+        this.audios[path].play()
     }
 
-    getAudio(path) {
-        if (!this.audios[path]) {
-            const audio = document.createElement('audio')
-            audio.src = path
-            this.audios[path] = audio
-        }
+    downloadAudio(path) {
+        const audio = document.createElement('audio')
+        audio.src = path
 
-        return this.audios[path];
+        return audio
     }
 }
