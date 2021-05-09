@@ -1,11 +1,17 @@
-#container{
+#container {
     width: 400px;
     margin: 0 auto;
     height: 600px;
 }
 
-#speed{
+#speed {
     height: 40%;
+}
+
+#speed > * {
+    float: left;
+    width: 20%;
+    height: 100%;
 }
 
 #sound {
